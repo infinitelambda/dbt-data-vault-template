@@ -1,0 +1,105 @@
+
+# Name your project! Project names should contain only lowercase characters
+# and underscores. A good package name should reflect your organization's
+# name or the intended use of these models
+name: 'dbt_data_vault_template'
+version: '1.0.0'
+config-version: 2
+
+# This setting configures which "profile" dbt uses for this project. Not applicable for dbt Cloud.
+profile: ''
+
+# These configurations specify where dbt should look for different types of files.
+# The `model-paths` config, for example, states that models in this project can be
+# found in the "models/" directory. You probably won't need to change these!
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+docs-paths: ["docs"]
+
+clean-targets:         # directories to be removed by `dbt clean`
+  - "target"
+  - "dbt_packages"
+
+vars:
+  # automateDV global variables, all set to default value
+  #Hashing configuration
+  automate_dv.hash: MD5
+  automate_dv.concat_string: '||'
+  automate_dv.null_placeholder_string: '^^'
+  automate_dv.hash_content_casing: 'UPPER'
+  #Ghost Record configuration
+  automate_dv.enable_ghost_records: false
+  automate_dv.system_record_value: 'AUTOMATE_DV_SYSTEM'
+  #NULL Key configurations
+  automate_dv.null_key_required: '-1'
+  automate_dv.null_key_optional: '-2'
+  #Other global variables
+  automate_dv.escape_char_left: '"'
+  automate_dv.escape_char_right: '"'
+  automate_dv.max_datetime: '9999-12-31 23:59:59.999999'
+
+  # datavault4dbt global variables, all set to default value
+  #Column Aliases
+  datavault4dbt.ldts_alias: 'ldts'
+  datavault4dbt.rsrc_alias: 'rsrc'
+  datavault4dbt.ledts_alias: 'ledts'
+  datavault4dbt.snapshot_trigger_column: 'is_active'
+  datavault4dbt.sdts_alias: 'sdts'
+  datavault4dbt.stg_alias: 'stg'
+  datavault4dbt.is_current_col_alias: 'IS_CURRENT'
+
+  #Hash Configuration
+  datavault4dbt.hash: 'MD5'
+  datavault4dbt.hash_datatype: 'STRING'
+  datavault4dbt.hashkey_input_case_sensitive: FALSE
+  datavault4dbt.hashdiff_input_case_sensitive: TRUE
+  
+  #Stage Configuration
+  datavault4dbt.copy_rsrc_ldts_input_columns: false  
+  
+  #Ghost Record Configuration  
+  datavault4dbt.beginning_of_all_times: {"bigquery":"0001-01-01T00-00-01","snowflake":"0001-01-01T00:00:01", "exasol": "0001-01-01 00:00:01"}
+  datavault4dbt.end_of_all_times: {"bigquery":"8888-12-31T23-59-59","snowflake":"8888-12-31T23:59:59", "exasol": "8888-12-31 23:59:59"}
+  datavault4dbt.timestamp_format: {"bigquery":"%Y-%m-%dT%H-%M-%S","snowflake":"YYYY-MM-DDTHH24:MI:SS", "exasol": "YYYY-mm-dd HH:MI:SS"}
+  datavault4dbt.default_unknown_rsrc: 'SYSTEM'
+  datavault4dbt.default_error_rsrc: 'ERROR'
+  datavault4dbt.rsrc_default_dtype: 'STRING'
+  datavault4dbt.stg_default_dtype: 'STRING'
+  datavault4dbt.derived_columns_default_dtype: STRING
+
+  #Datatype specific default values
+  datavault4dbt.error_value__STRING: '(error)'
+  datavault4dbt.error_value_alt__STRING: 'e'
+  datavault4dbt.unknown_value__STRING: '(unknown)'
+  datavault4dbt.unknown_value_alt__STRING: 'u'
+
+
+# Configuring seeds and models
+# Full documentation: https://docs.getdbt.com/docs/configuring-models
+
+seeds:
+  +schema: SALESFORCE
+
+models:
+  dbt_data_vault_template:
+    psa:
+      +materialized: table
+      +schema: psa
+    automate_dv:
+      stage:
+        +materialized: view
+        +schema: automate_dv
+      raw_vault:
+        +materialized: incremental
+        +schema: automate_dv
+    datavault4dbt:
+      stage:
+        +materialized: view
+        +schema: datavault4dbt
+      raw_vault:
+        +materialized: incremental
+        +schema: datavault4dbt

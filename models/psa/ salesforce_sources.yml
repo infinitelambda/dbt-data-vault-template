@@ -1,0 +1,21 @@
+version: 2
+
+
+sources:
+  - name: salesforce
+    description: sample salesforce data
+    database: DBT_DATA_VAULT_TEMPLATE
+    schema: DBT_SALESFORCE
+    tables:
+      - name: accounts
+        description: all company accounts
+          
+      - name: contacts
+        description: all company contacts
+
+      - name: leads
+        description: company leads
+
+      - name: opportunities
+        description: company opportunities
+        
