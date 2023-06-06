@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dv4dbt__stg_salesforce_accounts
+    description: Stage model for pre Data Vault calculations
+  - name: dv4dbt__stg_salesforce_contacts
+    description: Stage model for pre Data Vault calculations
+  - name: dv4dbt__stg_salesforce_leads
+    description: Stage model for pre Data Vault calculations
+  - name: dv4dbt__stg_salesforce_opportunities
+    description: Stage model for pre Data Vault calculations
+    

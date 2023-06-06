@@ -1,0 +1,191 @@
+version: 2
+
+models:
+  - name: dv4dbt__hub_account
+    description: Raw Vault hub for Account entity.
+    columns:
+      - name: ACCOUNT_PK
+        description: Hash representation of the business key.
+      - name: ACCOUNTID
+        description: Business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__hub_contact
+    description: Raw Vault hub for Contact entity.
+    columns:
+      - name: CONTACT_PK
+        description: Hash representation of the business key.
+      - name: CONTACTID
+        description: Business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__hub_lead
+    description: Raw Vault hub for Lead entity.
+    columns:
+      - name: LEAD_PK
+        description: Hash representation of the business key.
+      - name: LEADID
+        description: Business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__hub_opportunity
+    description: Raw Vault hub for Opportunity entity.
+    columns:
+      - name: OPPORTUNITY_PK
+        description: Hash representation of the business key.
+      - name: OPPORTUNITYID
+        description: Business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__link_contact_account
+    description: Raw Vault link connecting Contact and Account.
+    columns:
+      - name: CONTACT_ACCOUNT_PK
+        description: Primary key of the link. Hash representation of concatenated foreign keys.
+      - name: CONTACT_PK
+        description: Hash representation of the business key.
+      - name: ACCOUNT_PK
+        description: Hash representation of the business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__link_lead_contact
+    description: Raw Vault link connecting Lead and Contact.
+    columns:
+      - name: LEAD_CONTACT_PK
+        description: Primary key of the link. Hash representation of concatenated foreign keys.
+      - name: LEAD_PK
+        description: Hash representation of the business key.
+      - name: CONTACT_PK
+        description: Hash representation of the business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__link_opportunity_account
+    description: Raw Vault link connecting Opportunity and Account.
+    columns:
+      - name: OPPORTUNITY_ACCOUNT_PK
+        description: Primary key of the link. Hash representation of concatenated foreign keys.
+      - name: OPPORTUNITY_PK
+        description: Hash representation of the business key.
+      - name: ACCOUNT_PK
+        description: Hash representation of the business key.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RCSR
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_account_v0
+    description: Raw Vault version 0 satellite for Account entity.
+    columns:
+      - name: ACCOUNT_PK
+        description: Hash representation of the business key.
+      - name: ACCOUNT_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_contact_v0
+    description: Raw Vault version 0 satellite for Contact entity.
+    columns:
+      - name: CONTACT_PK
+        description: Hash representation of the business key.
+      - name: CONTACT_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_lead_v0
+    description: Raw Vault version 0 satellite for Lead entity.
+    columns:
+      - name: LEAD_PK
+        description: Hash representation of the business key.
+      - name: LEAD_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_opportunity_v0
+    description: Raw Vault version 0 satellite for Opportunity entity.
+    columns:
+      - name: OPPORTUNITY_PK
+        description: Hash representation of the business key.
+      - name: OPPORTUNITY_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+
+  - name: dv4dbt__sat_account_v1
+    description: Raw Vault version 1 satellite for Account entity.
+    columns:
+      - name: ACCOUNT_PK
+        description: Hash representation of the business key.
+      - name: ACCOUNT_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: LEDTS
+        description: Lead load datetime calculation.
+      - name: IS_CURRENT
+        description: Flag identifying current state row for a business key.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_contact_v1
+    description: Raw Vault version 1 satellite for Contact entity.
+    columns:
+      - name: CONTACT_PK
+        description: Hash representation of the business key.
+      - name: CONTACT_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: LEDTS
+        description: Lead load datetime calculation.
+      - name: IS_CURRENT
+        description: Flag identifying current state row for a business key.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_lead_v1
+    description: Raw Vault version 1 satellite for Lead entity.
+    columns:
+      - name: LEAD_PK
+        description: Hash representation of the business key.
+      - name: LEAD_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: LEDTS
+        description: Lead load datetime calculation.
+      - name: IS_CURRENT
+        description: Flag identifying current state row for a business key.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.
+  - name: dv4dbt__sat_opportunity_v1
+    description: Raw Vault version 1 satellite for Opportunity entity.
+    columns:
+      - name: OPPORTUNITY_PK
+        description: Hash representation of the business key.
+      - name: OPPORTUNITY_HASHDIFF
+        description: Hash representation of all payload columns according to DV standards.
+      - name: LDTS
+        description: Load datetime metadata column according to DV standards.
+      - name: LEDTS
+        description: Lead load datetime calculation.
+      - name: IS_CURRENT
+        description: Flag identifying current state row for a business key.
+      - name: RSRC
+        description: Record source metadata columns according to DV standards.

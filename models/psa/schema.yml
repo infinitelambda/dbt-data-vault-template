@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: psa_salesforce_accounts
+    description: Persistent staging area model for salesforce Accounts source table.
+  - name: psa_salesforce_contacts
+    description: Persistent staging area model for salesforce Contacts source table.
+  - name: psa_salesforce_leads
+    description: Persistent staging area model for salesforce Leads source table.
+  - name: psa_salesforce_opportunities
+    description: Persistent staging area model for salesforce Opportunities source table.
